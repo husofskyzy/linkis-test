@@ -17,9 +17,8 @@ package org.apache.linkis.resourcemanager.utils;
  * limitations under the License.
  */
 
-import org.h2.tools.Server;
 import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /** 
  * AlertUtils Tester

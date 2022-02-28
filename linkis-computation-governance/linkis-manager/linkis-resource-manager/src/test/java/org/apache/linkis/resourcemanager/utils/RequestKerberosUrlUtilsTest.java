@@ -17,6 +17,7 @@ package org.apache.linkis.resourcemanager.utils;
  * limitations under the License.
  */
 
+import org.apache.http.HttpResponse;
 import org.h2.tools.Server;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +42,6 @@ public class RequestKerberosUrlUtilsTest {
     @Test
     @DisplayName("Method description: ...")
     public void testCallRestUrl() throws Exception {
-        requestKerberosUrlUtils.callRestUrl("url","useKeyTab");
+        HttpResponse httpResponse = requestKerberosUrlUtils.callRestUrl("url","hadoop");
     }
- 
- 
-
-    @Test
-    @DisplayName("Method description: ...")
-    public void testBuildSpengoHttpClient() throws Exception { 
-        //TODO private方法无法调用
-//        requestKerberosUrlUtils.buildSpengoHttpClient();
-    }
- 
 } 
