@@ -67,7 +67,7 @@ object IOHelp {
   }
 
   /**
-    * 将穿过来的base64加密的内容转换为bytes数组写入文件
+    * 将传过来的base64加密的内容转换为bytes数组写入文件
     * @param fs
     * @param method
     */

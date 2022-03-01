@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.linkis.resourcemanager.external.service.impl;
+package org.apache.linkis.resourcemanager.external.service;
 
 import org.apache.linkis.manager.common.entity.resource.NodeResource;
 import org.apache.linkis.manager.common.entity.resource.ResourceType;

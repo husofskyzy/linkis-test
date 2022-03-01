@@ -18,30 +18,35 @@ package org.apache.linkis.resourcemanager.utils;
  */
 
 import org.apache.http.HttpResponse;
-import org.h2.tools.Server;
-import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.linkis.manager.common.entity.resource.ResourceType;
+import org.apache.linkis.resourcemanager.exception.RMErrorException;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-/** 
+import javax.security.auth.login.LoginException;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+/**
  * RequestKerberosUrlUtils Tester
-*/ 
+ */
 public class RequestKerberosUrlUtilsTest {
     private static RequestKerberosUrlUtils requestKerberosUrlUtils;
 
     @BeforeAll
-    @DisplayName("Each unit test method is executed once before execution")
     protected static void beforeAll() throws Exception {
-        requestKerberosUrlUtils = new RequestKerberosUrlUtils("principal","keyTabLocation");
+        requestKerberosUrlUtils = new RequestKerberosUrlUtils("principal", "keyTabLocation");
     }
 
     @AfterAll
-    @DisplayName("Each unit test method is executed once after execution")
-    protected static void afterAll() throws Exception {}
- 
- 
+    protected static void afterAll() throws Exception {
+    }
+
+
+
     @Test
-    @DisplayName("Method description: ...")
-    public void testCallRestUrl() throws Exception {
-        HttpResponse httpResponse = requestKerberosUrlUtils.callRestUrl("url","hadoop");
+    public void testCallRestUrl(){
+        HttpResponse httpResponse = requestKerberosUrlUtils.callRestUrl("url", "hadoop");
     }
 } 

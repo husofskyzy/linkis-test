@@ -24,15 +24,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /** 
  * RMErrorCode Tester
 */ 
 public class RMErrorCodeTest { 
- 
-    @Autowired
-    private RMErrorCode rMErrorCode;
- 
+
+
     @BeforeEach
     @DisplayName("Each unit test method is executed once before execution")
     public void before() throws Exception {
@@ -52,7 +51,7 @@ public class RMErrorCodeTest {
     @Test
     @DisplayName("Method description: ...")
     public void testGetMessage() throws Exception {
-        assertEquals("Insufficient cluster queue cpu",RMErrorCode.CLUSTER_QUEUE_CPU_INSUFFICIENT.getMessage());
+        assertNotNull(RMErrorCode.CLUSTER_QUEUE_CPU_INSUFFICIENT.getMessage());
     }
  
  
