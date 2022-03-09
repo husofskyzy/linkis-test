@@ -86,7 +86,7 @@ public class RMMonitorRestTest {
 
     @MockBean(name = "resourceManager")
     private ResourceManager resourceManager;
-    
+
 
     private static final Logger logger = LoggerFactory.getLogger(RMMonitorRestTest.class);
 

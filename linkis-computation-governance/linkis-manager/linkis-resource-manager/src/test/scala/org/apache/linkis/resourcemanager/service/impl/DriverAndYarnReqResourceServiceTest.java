@@ -26,6 +26,9 @@ import org.apache.linkis.manager.common.entity.resource.YarnResource;
 import org.apache.linkis.manager.label.entity.Label;
 import org.apache.linkis.manager.label.entity.em.EMInstanceLabel;
 import org.apache.linkis.resourcemanager.domain.RMLabelContainer;
+import org.apache.linkis.resourcemanager.external.service.ExternalResourceService;
+import org.apache.linkis.resourcemanager.external.service.ExternalResourceServiceImpl;
+import org.apache.linkis.resourcemanager.service.LabelResourceService;
 import org.apache.linkis.resourcemanager.utils.RMUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +40,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DriverAndYarnReqResourceServiceTest {
-    private DriverAndYarnReqResourceService driverAndYarnReqResourceService;
+    LabelResourceService labelResourceService = new LabelResourceServiceImpl();
+    ExternalResourceService externalResourceService = new ExternalResourceServiceImpl();
+    DriverAndYarnReqResourceService driverAndYarnReqResourceService = new DriverAndYarnReqResourceService(labelResourceService,externalResourceService);
 
     @BeforeEach
     @DisplayName("Each unit test method is executed once before execution")
@@ -53,11 +58,12 @@ public class DriverAndYarnReqResourceServiceTest {
 
     @Test
     public void testCanRequest(){
+        NodeResource nodeResource = new CommonNodeResource();
         List<Label<?>> labels = new ArrayList<>();
         Label<?> label = new EMInstanceLabel();
         labels.add(label);
+        labelResourceService.setLabelResource(label,nodeResource,"app");
         RMLabelContainer rMLabelContainer = new RMLabelContainer(labels);
-        NodeResource nodeResource = new CommonNodeResource();
         driverAndYarnReqResourceService.canRequest(rMLabelContainer,nodeResource);
     }
 

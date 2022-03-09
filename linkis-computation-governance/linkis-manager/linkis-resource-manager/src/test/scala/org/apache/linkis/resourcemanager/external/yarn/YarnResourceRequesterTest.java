@@ -28,15 +28,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class YarnResourceRequesterTest {
     YarnResourceRequester yarnResourceRequester = new YarnResourceRequester();
-    ExternalResourceProvider provider = new ExternalResourceProvider();
+    ExternalResourceProvider externalResourceProvider = new ExternalResourceProvider();
     @BeforeEach
     @DisplayName("Each unit test method is executed once before execution")
     protected void beforeEach() throws Exception {
         String config = "{\r\n\"rmWebAddress\": \"@YARN_RESTFUL_URL\",\r\n\"hadoopVersion\": \"2.7.2\",\r\n\"authorEnable\":false,\r\n\"user\":\"hadoop\",\r\n\"pwd\":\"123456\",\r\n\"kerberosEnable\":@KERBEROS_ENABLE,\r\n\"principalName\":\"@PRINCIPAL_NAME\",\r\n\"keytabPath\":\"@KEYTAB_PATH\",\r\n\"krb5Path\":\"@KRB5_PATH\"\r\n}";
-        provider.setConfig(config);
-        provider.setId(10);
-        provider.setName("yarn1");
-        provider.setResourceType(ResourceType.Yarn.toString());
+        externalResourceProvider.setConfig(config);
     }
 
     @AfterEach
@@ -45,13 +42,13 @@ public class YarnResourceRequesterTest {
 
     @Test
     public void testRequestResourceInfo(){
-        NodeResource nodeResource = yarnResourceRequester.requestResourceInfo(new YarnResourceIdentifier("yarn"),provider);
+        NodeResource nodeResource = yarnResourceRequester.requestResourceInfo(new YarnResourceIdentifier("yarn"),externalResourceProvider);
         assertNotEquals(null,nodeResource);
     }
 
     @Test
     public void testRequestAppInfo() {
-        yarnResourceRequester.requestAppInfo(new YarnResourceIdentifier("yarn"),provider);
+        yarnResourceRequester.requestAppInfo(new YarnResourceIdentifier("yarn"),externalResourceProvider);
     }
 
     @Test

@@ -122,7 +122,7 @@ public class DefaultResourceManagerTest {
 
     @Test
     public void testResourceCheck(){
-        NodeResource nodeResource = new CommonNodeResource();
+        NodeResource nodeResource = new UserNodeResource();
         Label label = new BindEngineLabel();
         defaultResourceManager.resourceCheck(label,nodeResource);
     }

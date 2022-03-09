@@ -17,6 +17,12 @@ package org.apache.linkis.resourcemanager.message;
  * limitations under the License.
  */
 
+import org.apache.linkis.common.ServiceInstance;
+import org.apache.linkis.manager.common.entity.node.AMEMNode;
+import org.apache.linkis.manager.common.entity.node.AMEngineNode;
+import org.apache.linkis.manager.common.entity.node.EMNode;
+import org.apache.linkis.manager.common.entity.node.EngineNode;
+import org.apache.linkis.manager.common.entity.resource.CommonNodeResource;
 import org.apache.linkis.manager.common.entity.resource.NodeResource;
 import org.apache.linkis.manager.common.protocol.em.EMInfoClearRequest;
 import org.apache.linkis.manager.common.protocol.em.EMResourceRegisterRequest;
@@ -24,6 +30,7 @@ import org.apache.linkis.manager.common.protocol.em.StopEMRequest;
 import org.apache.linkis.manager.common.protocol.engine.EngineInfoClearRequest;
 import org.apache.linkis.manager.common.protocol.node.NodeHeartbeatMsg;
 import org.apache.linkis.manager.common.protocol.resource.ResourceUsedProtocol;
+import org.apache.linkis.manager.engineplugin.common.resource.UserNodeResource;
 import org.apache.linkis.manager.label.service.NodeLabelAddService;
 import org.apache.linkis.manager.service.common.label.ManagerLabelService;
 import org.apache.linkis.message.builder.DefaultServiceMethodContext;
@@ -68,14 +75,18 @@ public class RMMessageServiceTest {
 
     @Test
     public void testDealWithEMInfoClearRequest(){
+        EMNode node = new AMEMNode();
         ServiceMethodContext serviceMethodContext = new DefaultServiceMethodContext();
         EMInfoClearRequest eMInfoClearRequest = new EMInfoClearRequest();
+        eMInfoClearRequest.setEm(node);
         rMMessageService.dealWithEMInfoClearRequest(eMInfoClearRequest,serviceMethodContext);
     }
 
     @Test
     public void testDealWithEngineInfoClearRequest(){
+        EngineNode engineNode = new AMEngineNode();
         EngineInfoClearRequest engineInfoClearRequest = new EngineInfoClearRequest();
+        engineInfoClearRequest.setEngineNode(engineNode);
         ServiceMethodContext serviceMethodContext = new DefaultServiceMethodContext();
         rMMessageService.dealWithEngineInfoClearRequest(engineInfoClearRequest,serviceMethodContext);
     }
@@ -89,7 +100,11 @@ public class RMMessageServiceTest {
 
     @Test
     public void testDealWithResourceUsedProtocol(){
-        ResourceUsedProtocol resourceUsedProtocol = new ResourceUsedProtocol(null,null,null);
+        NodeResource nodeResource = new UserNodeResource();
+        ServiceInstance serviceInstance = new ServiceInstance();
+        serviceInstance.setInstance("instance");
+        serviceInstance.setApplicationName("app");
+        ResourceUsedProtocol resourceUsedProtocol = new ResourceUsedProtocol(serviceInstance,nodeResource,"appId");
         rMMessageService.dealWithResourceUsedProtocol(resourceUsedProtocol);
     }
 

@@ -17,12 +17,14 @@ package org.apache.linkis.resourcemanager.utils;
  * limitations under the License.
  */
 
+import org.apache.linkis.manager.common.entity.persistence.PersistenceResource;
 import org.apache.linkis.manager.common.entity.resource.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class RMUtilsTest {
     @BeforeEach
@@ -43,20 +45,24 @@ public class RMUtilsTest {
     @Test
     public void testDeserializeResource(){
         NodeResource nodeResource = new CommonNodeResource();
-        RMUtils.toPersistenceResource(nodeResource);
+        nodeResource.setResourceType(ResourceType.Yarn);
+        PersistenceResource persistenceResource = RMUtils.toPersistenceResource(nodeResource);
+        assertEquals(0,persistenceResource.getId());
     }
 
     @Test
     public void testAggregateNodeResource(){
         NodeResource firstNodeResource = new CommonNodeResource();
         NodeResource secondNodeResource = new CommonNodeResource();
-        RMUtils.aggregateNodeResource(firstNodeResource,secondNodeResource);
+        CommonNodeResource commonNodeResource = RMUtils.aggregateNodeResource(firstNodeResource,secondNodeResource);
+        assertEquals(null,commonNodeResource.getResourceType());
     }
 
     @Test
     public void testAggregateResource(){
         Resource firstResource = new YarnResource(50L,8,2,null,null);
         Resource secondResource = new YarnResource(50L,8,2,null,null);
-        RMUtils.aggregateResource(firstResource,secondResource);
+        Resource resource = RMUtils.aggregateResource(firstResource,secondResource);
+        assertNotEquals(null,resource);
     }
 }
