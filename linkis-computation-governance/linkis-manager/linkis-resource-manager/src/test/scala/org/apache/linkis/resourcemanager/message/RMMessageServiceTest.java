@@ -32,6 +32,7 @@ import org.apache.linkis.manager.common.protocol.node.NodeHeartbeatMsg;
 import org.apache.linkis.manager.common.protocol.resource.ResourceUsedProtocol;
 import org.apache.linkis.manager.engineplugin.common.resource.UserNodeResource;
 import org.apache.linkis.manager.label.service.NodeLabelAddService;
+import org.apache.linkis.manager.label.service.NodeLabelService;
 import org.apache.linkis.manager.service.common.label.ManagerLabelService;
 import org.apache.linkis.message.builder.DefaultServiceMethodContext;
 import org.apache.linkis.message.builder.ServiceMethodContext;
@@ -59,7 +60,7 @@ public class RMMessageServiceTest {
     private ResourceManager resourceManager;
 
     @Mock
-    private NodeLabelAddService nodeLabelAddService;
+    private NodeLabelService nodeLabelService;
 
     @Mock
     private ManagerLabelService managerLabelService;
