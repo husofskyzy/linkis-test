@@ -61,7 +61,7 @@ public class RMUtilsTest {
     @Test
     public void testAggregateResource(){
         Resource firstResource = new YarnResource(50L,8,2,null,null);
-        Resource secondResource = new YarnResource(50L,8,2,null,null);
+        Resource secondResource = new YarnResource(30L,6,2,null,null);
         Resource resource = RMUtils.aggregateResource(firstResource,secondResource);
         assertNotEquals(null,resource);
     }
