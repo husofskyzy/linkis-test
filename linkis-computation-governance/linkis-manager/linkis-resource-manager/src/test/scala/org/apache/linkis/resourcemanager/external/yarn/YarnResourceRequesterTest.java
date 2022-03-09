@@ -18,6 +18,9 @@ package org.apache.linkis.resourcemanager.external.yarn;
  */
 
 import org.apache.linkis.manager.common.entity.resource.NodeResource;
+import org.apache.linkis.manager.common.entity.resource.ResourceType;
+import org.apache.linkis.manager.common.entity.resource.YarnResource;
+import org.apache.linkis.resourcemanager.external.domain.ExternalResourceIdentifier;
 import org.apache.linkis.resourcemanager.external.domain.ExternalResourceProvider;
 import org.junit.jupiter.api.*;
 
@@ -31,6 +34,9 @@ public class YarnResourceRequesterTest {
     protected void beforeEach() throws Exception {
         String config = "{\r\n\"rmWebAddress\": \"@YARN_RESTFUL_URL\",\r\n\"hadoopVersion\": \"2.7.2\",\r\n\"authorEnable\":false,\r\n\"user\":\"hadoop\",\r\n\"pwd\":\"123456\",\r\n\"kerberosEnable\":@KERBEROS_ENABLE,\r\n\"principalName\":\"@PRINCIPAL_NAME\",\r\n\"keytabPath\":\"@KEYTAB_PATH\",\r\n\"krb5Path\":\"@KRB5_PATH\"\r\n}";
         provider.setConfig(config);
+        provider.setId(10);
+        provider.setName("yarn1");
+        provider.setResourceType(ResourceType.Yarn.toString());
     }
 
     @AfterEach
