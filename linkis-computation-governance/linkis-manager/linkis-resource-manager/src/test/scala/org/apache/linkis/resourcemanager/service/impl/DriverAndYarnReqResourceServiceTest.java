@@ -25,6 +25,7 @@ import org.apache.linkis.manager.common.entity.resource.Resource;
 import org.apache.linkis.manager.common.entity.resource.YarnResource;
 import org.apache.linkis.manager.label.entity.Label;
 import org.apache.linkis.manager.label.entity.em.EMInstanceLabel;
+import org.apache.linkis.manager.label.service.ResourceLabelService;
 import org.apache.linkis.resourcemanager.domain.RMLabelContainer;
 import org.apache.linkis.resourcemanager.external.service.ExternalResourceService;
 import org.apache.linkis.resourcemanager.external.service.ExternalResourceServiceImpl;
@@ -34,12 +35,16 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DriverAndYarnReqResourceServiceTest {
+    @MockBean
+    private ResourceLabelService resourceLabelService;
+
     LabelResourceService labelResourceService = new LabelResourceServiceImpl();
     ExternalResourceService externalResourceService = new ExternalResourceServiceImpl();
     DriverAndYarnReqResourceService driverAndYarnReqResourceService = new DriverAndYarnReqResourceService(labelResourceService,externalResourceService);
