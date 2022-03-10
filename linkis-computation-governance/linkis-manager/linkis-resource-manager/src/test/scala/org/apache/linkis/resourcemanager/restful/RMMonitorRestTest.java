@@ -109,40 +109,40 @@ public class RMMonitorRestTest {
     @DisplayName("Each unit test method is executed once before execution")
     protected static void afterAll() {}
 
-//    @Test
-//    public void testGetApplicationList() throws Exception {
-//        MultiValueMap<String, String> paramsMap = new LinkedMultiValueMap<>();
-//        paramsMap.add("name","tom");
-//
-//        MvcResult mvcResult =
-//                mockMvc.perform(post("/linkisManager/rm/applicationlist").params(paramsMap))
-//                        .andExpect(status().isOk())
-//                        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                        .andReturn();
-//
-//        //json返回值转对象
-//        Message res =
-//                JsonUtils.jackson()
-//                        .readValue(mvcResult.getResponse().getContentAsString(), Message.class);
-//        //比较返回值状态是否成功
-//        assertEquals(MessageStatus.SUCCESS(), res.getStatus());
-//        //日志查看返回值
-//        logger.info(mvcResult.getResponse().getContentAsString());
-//    }
-//    @Test
-//    public void testGetUserResource(){
-//
-//    }
-//    @Test
-//    public void testGetEngines(){
-//
-//    }
-//    @Test
-//    public void testGetQueueResource(){
-//
-//    }
-//    @Test
-//    public void testGetQueues(){
-//
-//    }
+    @Test
+    public void testGetApplicationList() throws Exception {
+        MultiValueMap<String, String> paramsMap = new LinkedMultiValueMap<>();
+        paramsMap.add("name","tom");
+
+        MvcResult mvcResult =
+                mockMvc.perform(post("/linkisManager/rm/applicationlist").params(paramsMap))
+                        .andExpect(status().isOk())
+                        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                        .andReturn();
+
+        //json返回值转对象
+        Message res =
+                JsonUtils.jackson()
+                        .readValue(mvcResult.getResponse().getContentAsString(), Message.class);
+        //比较返回值状态是否成功
+        assertEquals(MessageStatus.SUCCESS(), res.getStatus());
+        //日志查看返回值
+        logger.info(mvcResult.getResponse().getContentAsString());
+    }
+    @Test
+    public void testGetUserResource(){
+
+    }
+    @Test
+    public void testGetEngines(){
+
+    }
+    @Test
+    public void testGetQueueResource(){
+
+    }
+    @Test
+    public void testGetQueues(){
+
+    }
 }
